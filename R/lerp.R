@@ -38,6 +38,6 @@ lerp.character <- function(x, y, t) {
 lerp.nativeRaster <- function(x, y, t) {
   out <- lerp_cpp(as.integer(x), as.integer(y), t)
   dim(out) <- dim(x)
-  class(out) <- c("nativeRaster", class(x))
+  class(out) <- c("nativeRaster", class(out))
   out
 }
