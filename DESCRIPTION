@@ -1,15 +1,21 @@
-Package: ggmixbox
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Package: mixboxr
+Title: Color Interpolation with 'Mixbox'
+Version: 0.0.1
 Authors@R: c(
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre")),
     person("Secret Weapons", , , "mixbox@scrtwpns.com", role = "cph")
   )
-Description: What the package does (one paragraph).
+Description: Offers blending method for natural color mixing with the
+    C/C++ implmentation of 'Mixbox' <https://github.com/scrtwpns/mixbox>
+    library.
 License: file LICENSE
+Imports:
+    rlang
 Suggests:
-    testthat (>= 3.0.0)
-LinkingTo: 
+    grid,
+    testthat (>= 3.0.0),
+    vdiffr
+LinkingTo:
     cpp11
 Config/testthat/edition: 3
 Encoding: UTF-8
