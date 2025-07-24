@@ -28,6 +28,12 @@ lerp.default <- function(x, y, t) {
   lerp_cpp(x, y, t)
 }
 
+#' @importFrom colorfast col_to_int
+#' @export
+lerp.character <- function(x, y, t) {
+  lerp_cpp(col_to_int(x), col_to_int(y), t)
+}
+
 #' @export
 lerp.nativeRaster <- function(x, y, t) {
   out <- lerp_cpp(as.integer(x), as.integer(y), t)

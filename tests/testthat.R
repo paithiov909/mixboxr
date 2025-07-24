@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(ggmixbox)
+library(mixboxr)
 
-test_check("ggmixbox")
+test_check("mixboxr")

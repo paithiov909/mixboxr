@@ -10,11 +10,10 @@ Description: Offers blending method for natural color mixing with the
     library.
 License: file LICENSE
 Imports:
+    colorfast,
     rlang
 Suggests:
-    grid,
     testthat (>= 3.0.0),
-    vdiffr
 LinkingTo:
     cpp11
 Config/testthat/edition: 3
