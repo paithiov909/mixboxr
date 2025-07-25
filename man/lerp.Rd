@@ -12,10 +12,11 @@ lerp(x, y, t)
 \item{t}{Mixing ratio}
 }
 \value{
-Interpolated color
+Returns interpolated colors as native packed integers.
+For \code{lerp.nativeRaster()}, it returns a \code{nativeRaster} object.
 }
 \description{
-Blends two colors using the 'mixbox' algorithm.
+Blends two colors using the 'Mixbox' algorithm.
 The input is expected to be an integer vector with the color
 channels packed in the following way:
 \itemize{
@@ -26,5 +27,11 @@ channels packed in the following way:
 }
 
 You can use \code{\link[colorfast:col_to_int]{colorfast::col_to_int()}} to convert colors to integers
-and \code{\link[colorfast:int_to_col]{colorfast::int_to_col()}} to convert back integers to hexdecimal colors.
+and \code{\link[colorfast:int_to_col]{colorfast::int_to_col()}} to convert integers back to hexdecimal colors.
+}
+\seealso{
+\itemize{
+\item \href{https://scrtwpns.com/mixbox/}{Mixbox - Natural Color Mixing Based on Real Pigments}
+\item \href{https://github.com/scrtwpns/mixbox}{scrtwpns/mixbox}
+}
 }

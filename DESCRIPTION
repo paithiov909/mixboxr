@@ -9,11 +9,12 @@ Description: Offers blending method for natural color mixing with the
     C/C++ implmentation of 'Mixbox' <https://github.com/scrtwpns/mixbox>
     library.
 License: file LICENSE
+BugReports: https://github.com/paithiov909/mixboxr/issues
 Imports:
     colorfast,
     rlang
 Suggests:
-    testthat (>= 3.0.0),
+    testthat (>= 3.0.0)
 LinkingTo:
     cpp11
 Config/testthat/edition: 3

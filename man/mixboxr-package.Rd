@@ -8,6 +8,13 @@
 \description{
 Offers blending method for natural color mixing with the C/C++ implmentation of 'Mixbox' \url{https://github.com/scrtwpns/mixbox} library.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item Report bugs at \url{https://github.com/paithiov909/mixboxr/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Akiru Kato \email{paithiov909@gmail.com}
 
