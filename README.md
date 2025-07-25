@@ -24,13 +24,18 @@ library(colorfast)
 blue <- col_to_int("blue")
 yellow <- col_to_int("yellow")
 
-# mix 50% blue and 50% yellow, resulting in green in the mixbox color space
+# mix 50% blue and 50% yellow, resulting in green in the Mixbox color space
 mixed <- mixboxr::lerp(blue, yellow, 0.5)
 mixed
 #> [1] -10185138
 
+# for comparison, here we interpolate the same colors with `scales::colour_ramp()`.
+# this is done in the CIELAB color space.
+ramped <- scales::colour_ramp(c("blue", "yellow"))(0.5)
+
 grid::grid.newpage()
-grid::grid.circle(x = 0.5, y = 0.5, r = 0.5, gp = grid::gpar(col = int_to_col(mixed), fill = int_to_col(mixed)))
+grid::grid.circle(x = 0.25, y = 0.5, r = 0.3, gp = grid::gpar(col = int_to_col(mixed), fill = int_to_col(mixed)))
+grid::grid.circle(x = 0.75, y = 0.5, r = 0.3, gp = grid::gpar(col = ramped, fill = ramped))
 ```
 
 <img src="man/figures/README-basic-usage-1.png" style="width:100.0%" />
