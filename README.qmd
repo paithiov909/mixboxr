@@ -35,7 +35,7 @@ yellow <- col_to_int("yellow")
 mixed <- mixboxr::lerp(blue, yellow, 0.5)
 mixed
 
-# for comparison, here we interpolate the same colors with `scales::colour_ramp()`.
+# for comparison, here we interpolate between the same colors with `scales::colour_ramp()`.
 # this is done in the CIELAB color space.
 ramped <- scales::colour_ramp(c("blue", "yellow"))(0.5)
 

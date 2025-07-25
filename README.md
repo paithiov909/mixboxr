@@ -29,7 +29,7 @@ mixed <- mixboxr::lerp(blue, yellow, 0.5)
 mixed
 #> [1] -10185138
 
-# for comparison, here we interpolate the same colors with `scales::colour_ramp()`.
+# for comparison, here we interpolate between the same colors with `scales::colour_ramp()`.
 # this is done in the CIELAB color space.
 ramped <- scales::colour_ramp(c("blue", "yellow"))(0.5)
 
@@ -62,7 +62,7 @@ rasts <-
   })
 
 dev.off()
-#> agg_png 
+#> agg_png
 #>       2
 
 result <- purrr::reduce(rasts, ~ mixboxr::lerp(.x, .y, 0.5))
