@@ -18,20 +18,16 @@ their C/C++ implementation.
 ``` r
 pkgload::load_all(export_all = FALSE)
 #> ℹ Loading mixboxr
-
 library(colorfast)
 
-blue <- col_to_int("blue")
-yellow <- col_to_int("yellow")
-
-# mix 50% blue and 50% yellow, resulting in green in the Mixbox color space
-mixed <- mixboxr::lerp(blue, yellow, 0.5)
+# mix 50% yellow and 50% blue, resulting in green in the Mixbox color space
+mixed <- mixboxr::lerp("yellow", "blue", 0.5)
 mixed
 #> [1] -10185138
 
 # for comparison, here we interpolate between the same colors with `scales::colour_ramp()`.
 # this is done in the CIELAB color space.
-ramped <- scales::colour_ramp(c("blue", "yellow"))(0.5)
+ramped <- scales::colour_ramp(c("yellow", "blue"))(0.5)
 
 grid::grid.newpage()
 grid::grid.circle(x = 0.25, y = 0.5, r = 0.3, gp = grid::gpar(col = int_to_col(mixed), fill = int_to_col(mixed)))
@@ -39,6 +35,29 @@ grid::grid.circle(x = 0.75, y = 0.5, r = 0.3, gp = grid::gpar(col = ramped, fill
 ```
 
 <img src="man/figures/README-basic-usage-1.png" style="width:100.0%" />
+
+``` r
+interp_lab <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "lab")
+interp_oklab <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "oklab")
+interp_rgb <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "rgb")
+interp_mixbox <- purrr::map_chr(seq(0, 1, length.out = 21), \(t) {
+  mixboxr::lerp("yellow", "blue", t) |>
+    colorfast::int_to_col()
+})
+
+opar <- par(mfrow = c(4, 1), mar = c(1, 1, 2, 1))
+image(1:21, 1, as.matrix(1:21), col = interp_lab, axes = FALSE, main = "CIELAB")
+image(1:21, 1, as.matrix(1:21), col = interp_oklab, axes = FALSE, main = "Oklab")
+image(1:21, 1, as.matrix(1:21), col = interp_rgb, axes = FALSE, main = "RGB")
+image(1:21, 1, as.matrix(1:21), col = interp_mixbox, axes = FALSE, main = "Mixbox")
+```
+
+<img src="man/figures/README-gradient-comparison-1.png"
+style="width:100.0%" />
+
+``` r
+par(opar)
+```
 
 ``` r
 library(ggplot2)
@@ -62,7 +81,7 @@ rasts <-
   })
 
 dev.off()
-#> agg_png
+#> agg_png 
 #>       2
 
 result <- purrr::reduce(rasts, ~ mixboxr::lerp(.x, .y, 0.5))

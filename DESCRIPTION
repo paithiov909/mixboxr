@@ -1,5 +1,5 @@
 Package: mixboxr
-Title: Color Interpolation with 'Mixbox'
+Title: Color Blending with 'Mixbox'
 Version: 0.0.1
 Authors@R: c(
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre")),

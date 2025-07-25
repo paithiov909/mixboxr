@@ -4,7 +4,7 @@
 \name{mixboxr-package}
 \alias{mixboxr}
 \alias{mixboxr-package}
-\title{mixboxr: Color Interpolation with 'Mixbox'}
+\title{mixboxr: Color Blending with 'Mixbox'}
 \description{
 Offers blending method for natural color mixing with the C/C++ implmentation of 'Mixbox' \url{https://github.com/scrtwpns/mixbox} library.
 }

@@ -2,17 +2,17 @@
 % Please edit documentation in R/lerp.R
 \name{lerp}
 \alias{lerp}
-\title{Mixbox interpolation between two colors}
+\title{Mixbox blending of two colors}
 \usage{
 lerp(x, y, t)
 }
 \arguments{
-\item{x, y}{Colors to interpolate between}
+\item{x, y}{Colors to blend}
 
 \item{t}{Mixing ratio}
 }
 \value{
-Returns interpolated colors as native packed integers.
+Returns blended colors as native packed integers.
 For \code{lerp.nativeRaster()}, it returns a \code{nativeRaster} object.
 }
 \description{

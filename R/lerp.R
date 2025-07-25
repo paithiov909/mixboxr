@@ -1,4 +1,4 @@
-#' Mixbox interpolation between two colors
+#' Mixbox blending of two colors
 #'
 #' @description
 #' Blends two colors using the 'Mixbox' algorithm.
@@ -12,13 +12,13 @@
 #' You can use [colorfast::col_to_int()] to convert colors to integers
 #' and [colorfast::int_to_col()] to convert integers back to hexdecimal colors.
 #'
-#' @param x,y Colors to interpolate between
+#' @param x,y Colors to blend
 #' @param t Mixing ratio
 #' @seealso
 #' - [Mixbox - Natural Color Mixing Based on Real Pigments](https://scrtwpns.com/mixbox/)
 #' - [scrtwpns/mixbox](https://github.com/scrtwpns/mixbox)
 #' @returns
-#' Returns interpolated colors as native packed integers.
+#' Returns blended colors as native packed integers.
 #' For `lerp.nativeRaster()`, it returns a `nativeRaster` object.
 #' @export
 lerp <- function(x, y, t) {

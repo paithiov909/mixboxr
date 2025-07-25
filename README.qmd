@@ -1,8 +1,8 @@
 ---
 title: mixboxr
 format: gfm
-fig-width: 3.2
-fig-height: 1.8
+fig-width: 6.4
+fig-height: 3.6
 knitr:
   opts_chunk:
     dev: "ragg_png"
@@ -25,24 +25,40 @@ mixboxr is an R package for mixing two colors using the [Mixbox](https://scrtwpn
 ```{r}
 #| label: basic-usage
 pkgload::load_all(export_all = FALSE)
-
 library(colorfast)
 
-blue <- col_to_int("blue")
-yellow <- col_to_int("yellow")
-
-# mix 50% blue and 50% yellow, resulting in green in the Mixbox color space
-mixed <- mixboxr::lerp(blue, yellow, 0.5)
+# mix 50% yellow and 50% blue, resulting in green in the Mixbox color space
+mixed <- mixboxr::lerp("yellow", "blue", 0.5)
 mixed
 
 # for comparison, here we interpolate between the same colors with `scales::colour_ramp()`.
 # this is done in the CIELAB color space.
-ramped <- scales::colour_ramp(c("blue", "yellow"))(0.5)
+ramped <- scales::colour_ramp(c("yellow", "blue"))(0.5)
 
 grid::grid.newpage()
 grid::grid.circle(x = 0.25, y = 0.5, r = 0.3, gp = grid::gpar(col = int_to_col(mixed), fill = int_to_col(mixed)))
 grid::grid.circle(x = 0.75, y = 0.5, r = 0.3, gp = grid::gpar(col = ramped, fill = ramped))
 ```
+
+
+```{r}
+#| label: gradient-comparison
+interp_lab <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "lab")
+interp_oklab <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "oklab")
+interp_rgb <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "rgb")
+interp_mixbox <- purrr::map_chr(seq(0, 1, length.out = 21), \(t) {
+  mixboxr::lerp("yellow", "blue", t) |>
+    colorfast::int_to_col()
+})
+
+opar <- par(mfrow = c(4, 1), mar = c(1, 1, 2, 1))
+image(1:21, 1, as.matrix(1:21), col = interp_lab, axes = FALSE, main = "CIELAB")
+image(1:21, 1, as.matrix(1:21), col = interp_oklab, axes = FALSE, main = "Oklab")
+image(1:21, 1, as.matrix(1:21), col = interp_rgb, axes = FALSE, main = "RGB")
+image(1:21, 1, as.matrix(1:21), col = interp_mixbox, axes = FALSE, main = "Mixbox")
+par(opar)
+```
+
 
 ```{r}
 #| label: ggplot2
