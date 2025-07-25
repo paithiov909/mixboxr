@@ -20,13 +20,13 @@ pkgload::load_all(export_all = FALSE)
 #> ℹ Loading mixboxr
 library(colorfast)
 
-# mix 50% yellow and 50% blue, resulting in green in the Mixbox color space
+# mix 50% yellow and 50% blue, resulting in green with Mixbox
 mixed <- mixboxr::lerp("yellow", "blue", 0.5)
 mixed
 #> [1] -10185138
 
 # for comparison, here we interpolate between the same colors with `scales::colour_ramp()`.
-# this is done in the CIELAB color space.
+# this is done in CIELAB color space
 ramped <- scales::colour_ramp(c("yellow", "blue"))(0.5)
 
 grid::grid.newpage()
@@ -40,10 +40,11 @@ grid::grid.circle(x = 0.75, y = 0.5, r = 0.3, gp = grid::gpar(col = ramped, fill
 interp_lab <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "lab")
 interp_oklab <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "oklab")
 interp_rgb <- scales::col_mix("yellow", "blue", seq(0, 1, length.out = 21), space = "rgb")
-interp_mixbox <- purrr::map_chr(seq(0, 1, length.out = 21), \(t) {
-  mixboxr::lerp("yellow", "blue", t) |>
-    colorfast::int_to_col()
-})
+interp_mixbox <-
+  purrr::map_int(seq(0, 1, length.out = 21), \(t) {
+    mixboxr::lerp("yellow", "blue", t)
+  }) |>
+  colorfast::int_to_col()
 
 opar <- par(mfrow = c(4, 1), mar = c(1, 1, 2, 1))
 image(1:21, 1, as.matrix(1:21), col = interp_lab, axes = FALSE, main = "CIELAB")
