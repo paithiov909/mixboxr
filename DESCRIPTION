@@ -1,6 +1,6 @@
 Package: mixboxr
 Title: Color Blending with 'Mixbox'
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: c(
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre")),
     person("Secret Weapons", , , "mixbox@scrtwpns.com", role = "cph")
@@ -17,7 +17,7 @@ Suggests:
     testthat (>= 3.0.0)
 LinkingTo:
     cpp11
+Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
